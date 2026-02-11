@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Randomframes — Photography by Savan Soamiah T P</title>
+    <meta
+      name="description"
+      content="Hi, I’m Savan Soamiah T P, a photographer drawn to light, mood, and honest moments. I look for beauty in the quiet, the imperfect, and the fleeting. My work is about turning real moments into timeless visuals."
+    />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="Randomframes — Photography by Savan Soamiah T P" />
+    <meta
+      property="og:description"
+      content="Hi, I’m Savan Soamiah T P, a photographer drawn to light, mood, and honest moments. I look for beauty in the quiet, the imperfect, and the fleeting. My work is about turning real moments into timeless visuals."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#0f0f10" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css?v=20260211-1" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top">Randomframes</a>
+      <nav id="sectionNav" class="section-nav" aria-label="Portfolio sections"></nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <p class="hero-kicker">Photography Portfolio</p>
+        <h1>Randomframes</h1>
+        <p class="hero-bio">
+          Hi, I’m Savan Soamiah T P, a photographer drawn to light, mood, and honest moments.
+          I look for beauty in the quiet, the imperfect, and the fleeting.
+          My work is about turning real moments into timeless visuals.
+        </p>
+      </section>
+
+      <section id="wedding" class="gallery-section" data-category="wedding" data-title="Wedding and Events">
+        <div class="section-head">
+          <h2>Wedding and Events</h2>
+          <p>Moments that matter, framed with intimacy and atmosphere.</p>
+        </div>
+        <div class="gallery-grid" role="list" aria-label="Wedding and Events gallery"></div>
+      </section>
+
+      <section id="portrait" class="gallery-section" data-category="portrait" data-title="Portrait">
+        <div class="section-head">
+          <h2>Portrait</h2>
+          <p>Character, connection, and a sense of quiet confidence.</p>
+        </div>
+        <div class="gallery-grid" role="list" aria-label="Portrait gallery"></div>
+      </section>
+
+      <section id="food" class="gallery-section" data-category="food" data-title="Food">
+        <div class="section-head">
+          <h2>Food</h2>
+          <p>Texture, color, and flavor brought to life through light.</p>
+        </div>
+        <div class="gallery-grid" role="list" aria-label="Food gallery"></div>
+      </section>
+
+      <section id="street" class="gallery-section" data-category="street" data-title="Street">
+        <div class="section-head">
+          <h2>Street</h2>
+          <p>Fragments of everyday life captured in real time.</p>
+        </div>
+        <div class="gallery-grid" role="list" aria-label="Street gallery"></div>
+      </section>
+
+      <section id="fashion" class="gallery-section" data-category="fashion" data-title="Fashion">
+        <div class="section-head">
+          <h2>Fashion</h2>
+          <p>Editorial expression with movement, style, and edge.</p>
+        </div>
+        <div class="gallery-grid" role="list" aria-label="Fashion gallery"></div>
+      </section>
+
+      <section id="landscape" class="gallery-section" data-category="landscape" data-title="Landscape">
+        <div class="section-head">
+          <h2>Landscape</h2>
+          <p>Natural spaces, atmosphere, and changing light.</p>
+        </div>
+        <div class="gallery-grid" role="list" aria-label="Landscape gallery"></div>
+      </section>
+
+      <section id="product" class="gallery-section" data-category="product" data-title="Product">
+        <div class="section-head">
+          <h2>Product</h2>
+          <p>Clean compositions with focus on detail and form.</p>
+        </div>
+        <div class="gallery-grid" role="list" aria-label="Product gallery"></div>
+      </section>
+    </main>
+
+    <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+      <button class="lightbox-close" type="button" aria-label="Close image">&times;</button>
+      <button class="lightbox-prev" type="button" aria-label="Previous image">&#10094;</button>
+      <figure class="lightbox-figure">
+        <img id="lightboxImage" src="" alt="" />
+        <figcaption id="lightboxCaption"></figcaption>
+      </figure>
+      <button class="lightbox-next" type="button" aria-label="Next image">&#10095;</button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

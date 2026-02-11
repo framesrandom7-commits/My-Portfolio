@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1750" viewBox="0 0 1400 1750" role="img" aria-label="portrait placeholder 01">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#6f7d8f"/>
+      <stop offset="100%" stop-color="#22232c"/>
+    </linearGradient>
+  </defs>
+  <rect width="1400" height="1750" fill="url(#g)"/>
+  <g fill="none" stroke="rgba(255,255,255,0.30)">
+    <circle cx="700" cy="875" r="340"/>
+    <circle cx="700" cy="875" r="250"/>
+  </g>
+  <text x="700" y="830" fill="rgba(255,255,255,0.88)" font-family="Georgia, serif" font-size="58" text-anchor="middle" letter-spacing="2">RANDOMFRAMES</text>
+  <text x="700" y="908" fill="rgba(255,255,255,0.74)" font-family="Arial, sans-serif" font-size="31" text-anchor="middle" letter-spacing="4">PORTRAIT PLACEHOLDER 01</text>
+</svg>
