@@ -1,0 +1,37 @@
+{
+  "wedding": [
+    "placeholder-01.svg",
+    "placeholder-02.svg",
+    "placeholder-03.svg"
+  ],
+  "portrait": [
+    "placeholder-01.svg",
+    "placeholder-02.svg",
+    "placeholder-03.svg"
+  ],
+  "food": [
+    "placeholder-01.svg",
+    "placeholder-02.svg",
+    "placeholder-03.svg"
+  ],
+  "street": [
+    "placeholder-01.svg",
+    "placeholder-02.svg",
+    "placeholder-03.svg"
+  ],
+  "fashion": [
+    "placeholder-01.svg",
+    "placeholder-02.svg",
+    "placeholder-03.svg"
+  ],
+  "landscape": [
+    "placeholder-01.svg",
+    "placeholder-02.svg",
+    "placeholder-03.svg"
+  ],
+  "product": [
+    "placeholder-01.svg",
+    "placeholder-02.svg",
+    "placeholder-03.svg"
+  ]
+}
