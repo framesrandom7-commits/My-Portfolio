@@ -1,50 +1,27 @@
 const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif", ".svg"];
 const MANIFEST_PATH = "images/manifest.json";
 
-const gallerySections = Array.from(document.querySelectorAll(".gallery-section"));
-const sectionNav = document.getElementById("sectionNav");
+const CATEGORY_ORDER = [
+  { key: "wedding-stories", title: "Wedding Stories", page: "wedding-stories.html" },
+  { key: "events", title: "Events", page: "events.html" },
+  { key: "portrait", title: "Portrait", page: "portrait.html" },
+  { key: "food", title: "Food", page: "food.html" },
+  { key: "street", title: "Street", page: "street.html" },
+  { key: "fashion", title: "Fashion", page: "fashion.html" },
+  { key: "landscape", title: "Landscape", page: "landscape.html" },
+  { key: "product", title: "Product", page: "product.html" },
+];
+
 const siteHeader = document.querySelector(".site-header");
-
-const lightbox = document.getElementById("lightbox");
-const lightboxImage = document.getElementById("lightboxImage");
-const lightboxCaption = document.getElementById("lightboxCaption");
-const closeButton = lightbox.querySelector(".lightbox-close");
-const prevButton = lightbox.querySelector(".lightbox-prev");
-const nextButton = lightbox.querySelector(".lightbox-next");
-
-const lightboxState = {
-  images: [],
-  index: 0,
-};
+const genreCards = document.getElementById("genreCards");
 
 init();
 
 async function init() {
-  buildNavigation();
-  observeSections();
   window.addEventListener("scroll", handleHeaderBorder, { passive: true });
 
   const manifest = await loadManifest();
-  gallerySections.forEach((section) => {
-    const category = section.dataset.category;
-    const title = section.dataset.title;
-    const files = manifest[category] || [];
-    renderCategory(section, title, category, files);
-  });
-
-  closeButton.addEventListener("click", closeLightbox);
-  prevButton.addEventListener("click", () => navigateLightbox(-1));
-  nextButton.addEventListener("click", () => navigateLightbox(1));
-  lightbox.addEventListener("click", (event) => {
-    if (event.target === lightbox) closeLightbox();
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (!lightbox.classList.contains("open")) return;
-    if (event.key === "Escape") closeLightbox();
-    if (event.key === "ArrowLeft") navigateLightbox(-1);
-    if (event.key === "ArrowRight") navigateLightbox(1);
-  });
+  renderGenreCards(manifest);
 }
 
 async function loadManifest() {
@@ -53,9 +30,9 @@ async function loadManifest() {
     if (!response.ok) throw new Error("Manifest not found");
     return await response.json();
   } catch {
-    // Fallback for first-time setup if manifest is missing.
     return {
-      wedding: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
+      "wedding-stories": ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
+      events: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
       portrait: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
       food: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
       street: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
@@ -66,146 +43,49 @@ async function loadManifest() {
   }
 }
 
-function renderCategory(section, title, category, files) {
-  const grid = section.querySelector(".gallery-grid");
-  const validFiles = files.filter((file) => isImageFile(file));
+function renderGenreCards(manifest) {
+  if (!genreCards) return;
+  genreCards.innerHTML = "";
 
-  if (!validFiles.length) {
-    const message = document.createElement("p");
-    message.className = "empty-note";
-    message.textContent = `No images found in /images/${category}. Add files and push to GitHub.`;
-    grid.append(message);
-    return;
-  }
+  CATEGORY_ORDER.forEach(({ key, title, page }) => {
+    const { folder, files } = resolveCategorySource(manifest, key);
+    const validFiles = files.filter((file) => isImageFile(file));
+    const cover = validFiles[0] || "placeholder-01.svg";
 
-  const imageEntries = validFiles.map((fileName, idx) => ({
-    src: `images/${category}/${encodeURIComponent(fileName)}`,
-    alt: `${title} photo ${idx + 1}`,
-    caption: `${title} · ${cleanFileName(fileName)}`,
-  }));
+    const card = document.createElement("a");
+    card.className = "genre-card";
+    card.href = page;
+    card.setAttribute("aria-label", `Open ${title} gallery`);
 
-  imageEntries.forEach((entry, index) => {
-    const figure = document.createElement("figure");
-    figure.className = "image-card";
-    figure.setAttribute("role", "listitem");
-
-    const button = document.createElement("button");
-    button.type = "button";
-    button.setAttribute("aria-label", `Open ${entry.alt}`);
-
-    const wrap = document.createElement("div");
-    wrap.className = "image-wrap";
+    const label = document.createElement("span");
+    label.textContent = title;
 
     const image = document.createElement("img");
-    image.src = entry.src;
-    image.alt = entry.alt;
+    image.src = `images/${folder}/${encodeURIComponent(cover)}`;
+    image.alt = `${title} cover image`;
     image.loading = "lazy";
     image.decoding = "async";
 
-    image.addEventListener("load", () => {
-      wrap.classList.add("loaded");
-    });
-
-    const caption = document.createElement("figcaption");
-    caption.innerHTML = `<span>${entry.caption}</span><span>${String(index + 1).padStart(2, "0")}</span>`;
-
-    button.addEventListener("click", () => {
-      openLightbox(imageEntries, index);
-    });
-
-    wrap.append(image);
-    button.append(wrap);
-    figure.append(button, caption);
-    grid.append(figure);
+    card.append(label, image);
+    genreCards.append(card);
   });
 }
 
-function buildNavigation() {
-  const fragment = document.createDocumentFragment();
-  gallerySections.forEach((section) => {
-    const link = document.createElement("a");
-    link.href = `#${section.id}`;
-    link.textContent = section.dataset.title;
-    fragment.append(link);
-  });
-  sectionNav.append(fragment);
-}
-
-function observeSections() {
-  const links = Array.from(sectionNav.querySelectorAll("a"));
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("revealed");
-        }
-      });
-    },
-    { threshold: 0.12 }
-  );
-
-  const navObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const id = entry.target.id;
-        links.forEach((link) => {
-          link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
-        });
-      });
-    },
-    { threshold: 0.4 }
-  );
-
-  gallerySections.forEach((section) => {
-    revealObserver.observe(section);
-    navObserver.observe(section);
-  });
+function resolveCategorySource(manifest, key) {
+  if (key === "wedding-stories") {
+    if (manifest["wedding-stories"]?.length) {
+      return { folder: "wedding-stories", files: manifest["wedding-stories"] };
+    }
+    return { folder: "wedding", files: manifest.wedding || [] };
+  }
+  return { folder: key, files: manifest[key] || [] };
 }
 
 function handleHeaderBorder() {
-  siteHeader.classList.toggle("scrolled", window.scrollY > 10);
-}
-
-function openLightbox(images, index) {
-  lightboxState.images = images;
-  lightboxState.index = index;
-  updateLightbox();
-  lightbox.classList.add("open");
-  lightbox.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
-}
-
-function navigateLightbox(direction) {
-  const total = lightboxState.images.length;
-  if (!total) return;
-  lightboxState.index = (lightboxState.index + direction + total) % total;
-  updateLightbox();
-}
-
-function updateLightbox() {
-  const current = lightboxState.images[lightboxState.index];
-  if (!current) return;
-  lightboxImage.src = current.src;
-  lightboxImage.alt = current.alt;
-  lightboxCaption.textContent = current.caption;
-}
-
-function closeLightbox() {
-  lightbox.classList.remove("open");
-  lightbox.setAttribute("aria-hidden", "true");
-  document.body.style.overflow = "";
-  lightboxImage.src = "";
+  siteHeader?.classList.toggle("scrolled", window.scrollY > 10);
 }
 
 function isImageFile(fileName) {
   const lower = fileName.toLowerCase();
   return IMAGE_EXTENSIONS.some((ext) => lower.endsWith(ext));
-}
-
-function cleanFileName(fileName) {
-  return fileName
-    .replace(/\.[^/.]+$/, "")
-    .replace(/[-_]+/g, " ")
-    .trim();
 }

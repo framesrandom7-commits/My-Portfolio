@@ -1,6 +1,6 @@
 # Randomframes.com - Static Photography Portfolio
 
-A modern, premium, single-page photography portfolio for **Savan Soamiah T P**, built with pure HTML, CSS, and JavaScript.
+A modern, premium, single-page photography portfolio for **Savan Somaiah T P**, built with pure HTML, CSS, and JavaScript.
 
 ## Project Structure
 
@@ -50,8 +50,9 @@ The same static project can also be deployed on Netlify or Vercel.
 ## Add or Remove Photos (GitHub only)
 
 1. Upload/remove image files inside these folders:
-   - `images/wedding`
-   - `images/portrait`
+  - `images/wedding-stories`
+  - `images/events`
+  - `images/portrait`
    - `images/food`
    - `images/street`
    - `images/fashion`

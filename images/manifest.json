@@ -1,5 +1,15 @@
 {
+  "wedding-stories": [
+    "placeholder-01.svg",
+    "placeholder-02.svg",
+    "placeholder-03.svg"
+  ],
   "wedding": [
+    "placeholder-01.svg",
+    "placeholder-02.svg",
+    "placeholder-03.svg"
+  ],
+  "events": [
     "placeholder-01.svg",
     "placeholder-02.svg",
     "placeholder-03.svg"

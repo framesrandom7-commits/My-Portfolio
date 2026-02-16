@@ -4,7 +4,9 @@ import path from "path";
 const ROOT = process.cwd();
 const IMAGES_DIR = path.join(ROOT, "images");
 const CATEGORIES = [
+  "wedding-stories",
   "wedding",
+  "events",
   "portrait",
   "food",
   "street",
