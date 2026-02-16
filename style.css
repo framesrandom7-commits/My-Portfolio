@@ -92,6 +92,17 @@ img {
   justify-content: center;
   width: 32px;
   height: 32px;
+  font-size: 1rem;
+  line-height: 1;
+  color: #1f1c18;
+  opacity: 1;
+}
+
+.icon-link i {
+  font-size: 1.05rem;
+  color: inherit;
+  display: block;
+  line-height: 1;
 }
 
 .icon-link svg {
@@ -129,11 +140,19 @@ main {
   width: 100%;
 }
 
-.hero-portrait {
-  width: clamp(180px, 32vw, 290px);
-  aspect-ratio: 4 / 5;
+.profile-image {
+  width: 384px;
+  height: 384px;
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 16px;
+  border: 1px solid var(--surface-border);
+}
+
+.hero-portrait {
+  width: 384px;
+  height: 384px;
+  object-fit: cover;
+  border-radius: 16px;
   border: 1px solid var(--surface-border);
 }
 
@@ -437,7 +456,7 @@ main {
   }
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1024px) {
   .site-header {
     align-items: center;
     flex-wrap: wrap;
@@ -454,6 +473,12 @@ main {
 
   .genre-cards {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .profile-image,
+  .hero-portrait {
+    width: 260px;
+    height: 260px;
   }
 }
 
@@ -492,6 +517,15 @@ main {
 
   .genre-cards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+@media (max-width: 600px) {
+  .profile-image,
+  .hero-portrait {
+    width: 180px;
+    height: 180px;
   }
 }
 
