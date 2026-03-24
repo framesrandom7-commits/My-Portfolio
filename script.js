@@ -4,10 +4,9 @@ const PRODUCT_FOLDER = "images/product";
 const PRODUCT_FILE_LIMIT = 50;
 
 const CATEGORY_ORDER = [
-  { key: "portrait", title: "Portrait", page: "portrait.html" },
-  { key: "food", title: "Food", page: "food.html" },
-  { key: "fashion", title: "Fashion", page: "fashion.html" },
-  { key: "product", title: "Product", page: "product.html" },
+  { key: "product", title: "Product Photography", page: "product.html" },
+  { key: "fashion", title: "Fashion Photography", page: "fashion.html" },
+  { key: "food", title: "Food & Beverage", page: "food.html" },
 ];
 
 const siteHeader = document.querySelector(".site-header");
@@ -29,10 +28,9 @@ async function loadManifest() {
     return await response.json();
   } catch {
     return {
-      portrait: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
-      food: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
-      fashion: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
       product: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
+      fashion: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
+      food: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
     };
   }
 }
