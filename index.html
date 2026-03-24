@@ -49,19 +49,27 @@
               I am Savan Somaiah T P, a Commercial & Brand Photographer specializing in light, mood, and authentic visual storytelling. I collaborate with brands to create refined, high-quality content that elevates their identity and leaves a lasting impression.
             </p>
             <div class="hero-center">
-              <h1 class="portfolio-title">Portfolio</h1>
+              <h1 class="portfolio-title">Selected Work</h1>
               <div id="genreCards" class="genre-cards" aria-label="Portfolio genres"></div>
             </div>
           </div>
         </div>
       </section>
 
+      <section class="reels-section" id="reelsSection" aria-labelledby="reels-title" hidden>
+        <div class="reels-header">
+          <h2 id="reels-title">Reels</h2>
+        </div>
+        <div id="reelsRail" class="reels-rail" aria-label="Brand reels"></div>
+      </section>
+
       <section class="work-with-me" aria-labelledby="work-with-me-title">
         <div class="work-with-me-inner">
           <h2 id="work-with-me-title">Work With Me</h2>
           <p>
-            I collaborate with brands and businesses to create high-quality visual content for campaigns, social media, and brand identity. If you're looking to elevate your brand through photography, let's connect.
+            I collaborate with brands and businesses to create high-quality visual content for campaigns, social media, and brand identity.
           </p>
+          <p class="work-with-me-cta">Have a project in mind? Let&apos;s create something impactful.</p>
           <div class="work-with-me-links">
             <a class="work-link" href="tel:9886688047" aria-label="Call 9886688047">
               <i class="fa-solid fa-phone" aria-hidden="true"></i>
@@ -86,6 +94,13 @@
       <p id="contact-phone"><a class="footer-phone" href="tel:9886688047">9886688047</a></p>
       <p>&copy; 2026 Random Frames By Savan</p>
     </footer>
+
+    <div id="reelModal" class="reel-modal" aria-hidden="true" role="dialog" aria-modal="true">
+      <button id="reelModalClose" class="reel-modal-close" type="button" aria-label="Close reel">&times;</button>
+      <div class="reel-modal-panel">
+        <video id="reelModalVideo" playsinline controls preload="metadata"></video>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>
