@@ -492,15 +492,15 @@ main {
   border-radius: 18px;
   overflow: hidden;
   border: 0;
-  background: transparent;
+  background: none !important;
+  padding: 0 !important;
   position: relative;
-  box-shadow: 0 14px 34px rgba(22, 18, 13, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: none !important;
+  transition: transform 0.3s ease;
 }
 
 .image-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 20px 42px rgba(22, 18, 13, 0.12);
 }
 
 .image-card button {
@@ -516,7 +516,8 @@ main {
 
 .image-wrap {
   position: relative;
-  background: transparent;
+  background: none !important;
+  padding: 0 !important;
   aspect-ratio: 4 / 5;
   overflow: hidden;
 }
