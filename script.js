@@ -10,19 +10,16 @@ const CATEGORY_ORDER = [
   {
     key: "product",
     title: "Product Photography",
-    description: "Clean, detail-driven visuals for modern brands",
     page: "product.html",
   },
   {
     key: "fashion",
     title: "Fashion Photography",
-    description: "Editorial and campaign-focused storytelling",
     page: "fashion.html",
   },
   {
     key: "food",
     title: "Food & Beverage",
-    description: "Stylized compositions crafted for visual appeal",
     page: "food.html",
   },
 ];
@@ -71,7 +68,7 @@ async function renderGenreCards(manifest) {
   if (!genreCards) return;
   genreCards.innerHTML = "";
 
-  for (const { key, title, description, page } of CATEGORY_ORDER) {
+  for (const { key, title, page } of CATEGORY_ORDER) {
     const source = key === "product"
       ? await resolveAutoProductSource()
       : resolveCategorySource(manifest, key);
@@ -89,9 +86,6 @@ async function renderGenreCards(manifest) {
     const label = document.createElement("span");
     label.textContent = title;
 
-    const meta = document.createElement("p");
-    meta.textContent = description;
-
     const media = document.createElement("div");
     media.className = "genre-card-media";
 
@@ -101,7 +95,7 @@ async function renderGenreCards(manifest) {
     image.loading = "lazy";
     image.decoding = "async";
 
-    copy.append(label, meta);
+    copy.append(label);
     media.append(image);
     card.append(copy, media);
     genreCards.append(card);

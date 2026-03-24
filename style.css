@@ -210,13 +210,6 @@ main {
   font-weight: 700;
 }
 
-.genre-card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.84rem;
-  line-height: 1.55;
-}
-
 .genre-card-media {
   overflow: hidden;
   border-radius: 10px;
@@ -300,48 +293,38 @@ main {
   font-size: 1rem;
 }
 
-.reels-section {
-  padding: clamp(2.6rem, 5vw, 4rem) 0 1rem;
+.brand-films {
+  margin-top: 80px;
 }
 
-.reels-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-}
-
-.reels-header h2 {
+.brand-films h2 {
   margin: 0;
   font-family: "Playfair Display", serif;
   font-size: clamp(1.7rem, 3vw, 2.2rem);
   color: var(--text);
 }
 
-.reels-subtitle {
+.section-subtext {
   margin: 0.35rem 0 0;
   color: var(--muted);
   font-size: 0.93rem;
   max-width: 44ch;
 }
 
-.reels-rail {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(240px, 300px);
-  gap: 1rem;
+.films-container {
+  display: flex;
+  gap: 20px;
   overflow-x: auto;
-  padding-bottom: 0.35rem;
-  scroll-snap-type: x proximity;
+  padding: 20px 0;
 }
 
-.reels-rail::-webkit-scrollbar {
-  height: 8px;
-}
-
-.reels-rail::-webkit-scrollbar-thumb {
-  background: rgba(28, 26, 23, 0.15);
-  border-radius: 999px;
+.films-container video {
+  width: 220px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 16px;
+  flex-shrink: 0;
+  background: black;
 }
 
 .reel-card {
