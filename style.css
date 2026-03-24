@@ -578,17 +578,6 @@ main {
   opacity: 1;
 }
 
-.overlay,
-.image-overlay,
-.caption,
-.portfolio-caption {
-  display: none !important;
-}
-
-.image-card figcaption {
-  display: none !important;
-}
-
 .genre-page-subtitle {
   margin: 0.45rem 0 0;
   color: var(--muted);
@@ -635,11 +624,6 @@ main {
   object-fit: contain;
   border-radius: 14px;
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
-}
-
-.lightbox-figure figcaption {
-  color: #e7dfd3;
-  font-size: 0.86rem;
 }
 
 .lightbox button {
