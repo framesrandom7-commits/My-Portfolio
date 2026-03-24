@@ -2,6 +2,38 @@ const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif", ".s
 const MANIFEST_PATH = "images/manifest.json";
 const PRODUCT_FOLDER = "images/product";
 const PRODUCT_FILE_LIMIT = 50;
+const CATEGORY_META = {
+  product: {
+    subtitle: "Clean, detail-driven visuals for modern brands",
+    labelSuffix: "Product Campaign",
+    fallbackLabels: [
+      "Beardo — Product Campaign",
+      "Colgate — Commercial Shoot",
+      "Studio Series — Visual Story",
+      "Signature Launch — Product Campaign",
+    ],
+  },
+  fashion: {
+    subtitle: "Editorial and campaign-focused storytelling",
+    labelSuffix: "Visual Story",
+    fallbackLabels: [
+      "Muse House — Campaign Story",
+      "Editorial Frame — Visual Story",
+      "Atelier Line — Campaign Story",
+      "Motion Edit — Visual Story",
+    ],
+  },
+  food: {
+    subtitle: "Stylized compositions crafted for visual appeal",
+    labelSuffix: "Beverage Campaign",
+    fallbackLabels: [
+      "Nescafe — Beverage Campaign",
+      "Cafe Ritual — Visual Story",
+      "Table Edit — Beverage Campaign",
+      "Signature Pour — Visual Story",
+    ],
+  },
+};
 
 const genreTitle = document.getElementById("genreTitle");
 const genreGallery = document.getElementById("genreGallery");
@@ -77,12 +109,13 @@ function resolveCategorySource(manifest, key) {
 function renderCategory(title, folder, files) {
   genreTitle.textContent = title;
   document.title = `Randomframes — ${title}`;
+  renderCategorySubtitle();
 
   const validFiles = files.filter((file) => isImageFile(file));
   const entries = validFiles.map((fileName, index) => ({
     src: `${folder}/${encodeURIComponent(fileName)}`,
     alt: `${title} photo ${index + 1}`,
-    caption: `${title} · ${cleanFileName(fileName)}`,
+    caption: formatProjectLabel(fileName, index),
   }));
 
   if (!entries.length) {
@@ -119,11 +152,26 @@ function renderCategory(title, folder, files) {
       openLightbox(entries, index);
     });
 
+    const caption = document.createElement("figcaption");
+    caption.textContent = entry.caption;
+
     wrap.append(image);
     button.append(wrap);
-    figure.append(button);
+    figure.append(button, caption);
     genreGallery.append(figure);
   });
+}
+
+function renderCategorySubtitle() {
+  const meta = CATEGORY_META[categoryKey];
+  if (!meta || genreTitle.nextElementSibling?.classList.contains("genre-page-subtitle")) {
+    return;
+  }
+
+  const subtitle = document.createElement("p");
+  subtitle.className = "genre-page-subtitle";
+  subtitle.textContent = meta.subtitle;
+  genreTitle.insertAdjacentElement("afterend", subtitle);
 }
 
 function openLightbox(images, index) {
@@ -167,6 +215,43 @@ function cleanFileName(fileName) {
     .replace(/\.[^/.]+$/, "")
     .replace(/[-_]+/g, " ")
     .trim();
+}
+
+function formatProjectLabel(fileName, index) {
+  const meta = CATEGORY_META[categoryKey];
+  const cleaned = cleanFileName(fileName);
+
+  if (!meta) {
+    return toTitleCase(cleaned);
+  }
+
+  if (/^(placeholder|img)\s*\d*$/i.test(cleaned)) {
+    return meta.fallbackLabels[index % meta.fallbackLabels.length];
+  }
+
+  if (cleaned.includes("—")) {
+    return cleaned
+      .split("—")
+      .map((part) => toTitleCase(part))
+      .join(" — ");
+  }
+
+  if (cleaned.includes(" - ")) {
+    return cleaned
+      .split(" - ")
+      .map((part) => toTitleCase(part))
+      .join(" — ");
+  }
+
+  return `${toTitleCase(cleaned)} — ${meta.labelSuffix}`;
+}
+
+function toTitleCase(text) {
+  return text
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 }
 
 async function resolveAutoProductSource() {

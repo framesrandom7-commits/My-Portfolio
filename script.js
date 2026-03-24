@@ -7,9 +7,24 @@ const REEL_FILE_LIMIT = 12;
 const REEL_EXTENSIONS = [".mp4", ".webm", ".mov"];
 
 const CATEGORY_ORDER = [
-  { key: "product", title: "Product Photography", page: "product.html" },
-  { key: "fashion", title: "Fashion Photography", page: "fashion.html" },
-  { key: "food", title: "Food & Beverage", page: "food.html" },
+  {
+    key: "product",
+    title: "Product Photography",
+    description: "Clean, detail-driven visuals for modern brands",
+    page: "product.html",
+  },
+  {
+    key: "fashion",
+    title: "Fashion Photography",
+    description: "Editorial and campaign-focused storytelling",
+    page: "fashion.html",
+  },
+  {
+    key: "food",
+    title: "Food & Beverage",
+    description: "Stylized compositions crafted for visual appeal",
+    page: "food.html",
+  },
 ];
 
 const siteHeader = document.querySelector(".site-header");
@@ -56,7 +71,7 @@ async function renderGenreCards(manifest) {
   if (!genreCards) return;
   genreCards.innerHTML = "";
 
-  for (const { key, title, page } of CATEGORY_ORDER) {
+  for (const { key, title, description, page } of CATEGORY_ORDER) {
     const source = key === "product"
       ? await resolveAutoProductSource()
       : resolveCategorySource(manifest, key);
@@ -68,8 +83,17 @@ async function renderGenreCards(manifest) {
     card.href = page;
     card.setAttribute("aria-label", `Open ${title} gallery`);
 
+    const copy = document.createElement("div");
+    copy.className = "genre-card-copy";
+
     const label = document.createElement("span");
     label.textContent = title;
+
+    const meta = document.createElement("p");
+    meta.textContent = description;
+
+    const media = document.createElement("div");
+    media.className = "genre-card-media";
 
     const image = document.createElement("img");
     image.src = `${source.folder}/${encodeURIComponent(cover)}`;
@@ -77,7 +101,9 @@ async function renderGenreCards(manifest) {
     image.loading = "lazy";
     image.decoding = "async";
 
-    card.append(label, image);
+    copy.append(label, meta);
+    media.append(image);
+    card.append(copy, media);
     genreCards.append(card);
   }
 }
@@ -254,6 +280,12 @@ function bindReelModalEvents() {
       closeReelModal();
     }
   });
+
+  reelModalVideo.addEventListener("click", () => {
+    if (reelModalVideo.muted) {
+      reelModalVideo.muted = false;
+    }
+  });
 }
 
 function openReelModal(src) {
@@ -262,7 +294,7 @@ function openReelModal(src) {
 
   reelModalVideo.src = src;
   reelModalVideo.currentTime = 0;
-  reelModalVideo.muted = false;
+  reelModalVideo.muted = true;
   reelModalVideo.controls = true;
   reelModal.classList.add("open");
   reelModal.setAttribute("aria-hidden", "false");
