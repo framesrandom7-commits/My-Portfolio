@@ -212,6 +212,64 @@ main {
   box-shadow: 0 8px 18px rgba(22, 18, 13, 0.08);
 }
 
+.work-with-me {
+  padding: clamp(2.6rem, 5vw, 4rem) 0 1rem;
+}
+
+.work-with-me-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  gap: 1rem;
+}
+
+.work-with-me h2 {
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.7rem, 3vw, 2.2rem);
+  color: var(--text);
+}
+
+.work-with-me p {
+  margin: 0 auto;
+  max-width: 62ch;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.work-with-me-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.work-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.78rem 1rem;
+  min-width: 150px;
+  border: 1px solid var(--surface-border);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--text);
+  background: #fff;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.work-link:hover {
+  background: #f6f4f1;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(22, 18, 13, 0.08);
+}
+
+.work-link i {
+  font-size: 1rem;
+}
+
 .gallery-section {
   padding: clamp(2rem, 4vw, 3rem) 0;
   border-bottom: 1px solid var(--line);
@@ -542,5 +600,14 @@ main {
   .hero-portrait {
     width: 180px;
     height: 180px;
+  }
+
+  .work-with-me-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .work-link {
+    width: min(100%, 280px);
   }
 }
