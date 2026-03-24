@@ -446,7 +446,7 @@ main {
 }
 
 .gallery-section {
-  padding: clamp(2rem, 4vw, 3rem) 0;
+  padding: 60px 0;
   border-bottom: none;
   opacity: 0;
   transform: translateY(20px);
@@ -487,8 +487,8 @@ main {
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
 }
 
 .image-card {
@@ -523,7 +523,7 @@ main {
   position: relative;
   background: none !important;
   padding: 0 !important;
-  height: 320px;
+  height: auto;
   aspect-ratio: auto;
   overflow: hidden;
   border-radius: 16px;
@@ -556,9 +556,7 @@ main {
 .image-card img {
   display: block;
   width: 100%;
-  height: 320px;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
   opacity: 0;
   transform: scale(1.02);
   transition: opacity 0.4s ease, transform 0.3s ease;
@@ -582,6 +580,12 @@ main {
   margin: 0.45rem 0 0;
   color: var(--muted);
   max-width: 48ch;
+}
+
+.overlay,
+.caption,
+.portfolio-caption {
+  display: none !important;
 }
 
 .empty-note {
@@ -724,10 +728,6 @@ main {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .profile-image,
   .hero-portrait {
     width: 260px;
@@ -770,10 +770,6 @@ main {
 }
 
 @media (max-width: 600px) {
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
-
   .profile-image,
   .hero-portrait {
     width: 180px;
