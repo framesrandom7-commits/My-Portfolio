@@ -1,5 +1,7 @@
 const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif", ".svg"];
 const MANIFEST_PATH = "images/manifest.json";
+const PRODUCT_FOLDER = "images/product";
+const PRODUCT_FILE_LIMIT = 50;
 
 const genreTitle = document.getElementById("genreTitle");
 const genreGallery = document.getElementById("genreGallery");
@@ -21,10 +23,11 @@ const lightboxState = {
 init();
 
 async function init() {
-  const manifest = await loadManifest();
-  const { folder, files } = resolveCategorySource(manifest, categoryKey);
+  const source = categoryKey === "product"
+    ? await resolveAutoProductSource()
+    : resolveCategorySource(await loadManifest(), categoryKey);
 
-  renderCategory(categoryTitle, folder, files);
+  renderCategory(categoryTitle, source.folder, source.files);
 
   closeButton.addEventListener("click", closeLightbox);
   prevButton.addEventListener("click", () => navigateLightbox(-1));
@@ -63,12 +66,12 @@ async function loadManifest() {
 function resolveCategorySource(manifest, key) {
   if (key === "wedding-stories") {
     if (manifest["wedding-stories"]?.length) {
-      return { folder: "wedding-stories", files: manifest["wedding-stories"] };
+      return { folder: "images/wedding-stories", files: manifest["wedding-stories"] };
     }
-    return { folder: "wedding", files: manifest.wedding || [] };
+    return { folder: "images/wedding", files: manifest.wedding || [] };
   }
 
-  return { folder: key, files: manifest[key] || [] };
+  return { folder: `images/${key}`, files: manifest[key] || [] };
 }
 
 function renderCategory(title, folder, files) {
@@ -77,7 +80,7 @@ function renderCategory(title, folder, files) {
 
   const validFiles = files.filter((file) => isImageFile(file));
   const entries = validFiles.map((fileName, index) => ({
-    src: `images/${folder}/${encodeURIComponent(fileName)}`,
+    src: `${folder}/${encodeURIComponent(fileName)}`,
     alt: `${title} photo ${index + 1}`,
     caption: `${title} · ${cleanFileName(fileName)}`,
   }));
@@ -85,7 +88,7 @@ function renderCategory(title, folder, files) {
   if (!entries.length) {
     const message = document.createElement("p");
     message.className = "empty-note";
-    message.textContent = `No images found in /images/${folder}. Add files and push to GitHub.`;
+    message.textContent = `No images found in /${folder}. Add files and push to GitHub.`;
     genreGallery.append(message);
     return;
   }
@@ -164,4 +167,29 @@ function cleanFileName(fileName) {
     .replace(/\.[^/.]+$/, "")
     .replace(/[-_]+/g, " ")
     .trim();
+}
+
+async function resolveAutoProductSource() {
+  const files = await loadSequentialProductImages();
+  return { folder: PRODUCT_FOLDER, files };
+}
+
+async function loadSequentialProductImages() {
+  const probes = [];
+  for (let index = 1; index <= PRODUCT_FILE_LIMIT; index += 1) {
+    const fileName = `img${index}.jpg`;
+    probes.push(probeImage(`${PRODUCT_FOLDER}/${fileName}`).then((exists) => (exists ? fileName : null)));
+  }
+
+  const results = await Promise.all(probes);
+  return results.filter(Boolean);
+}
+
+function probeImage(src) {
+  return new Promise((resolve) => {
+    const image = new Image();
+    image.onload = () => resolve(true);
+    image.onerror = () => resolve(false);
+    image.src = src;
+  });
 }
