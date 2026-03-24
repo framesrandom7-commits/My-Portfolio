@@ -5,33 +5,12 @@ const PRODUCT_FILE_LIMIT = 50;
 const CATEGORY_META = {
   product: {
     subtitle: "Clean, detail-driven visuals for modern brands",
-    labelSuffix: "Product Campaign",
-    fallbackLabels: [
-      "Beardo — Product Campaign",
-      "Colgate — Commercial Shoot",
-      "Studio Series — Visual Story",
-      "Signature Launch — Product Campaign",
-    ],
   },
   fashion: {
     subtitle: "Editorial and campaign-focused storytelling",
-    labelSuffix: "Visual Story",
-    fallbackLabels: [
-      "Muse House — Campaign Story",
-      "Editorial Frame — Visual Story",
-      "Atelier Line — Campaign Story",
-      "Motion Edit — Visual Story",
-    ],
   },
   food: {
     subtitle: "Stylized compositions crafted for visual appeal",
-    labelSuffix: "Beverage Campaign",
-    fallbackLabels: [
-      "Nescafe — Beverage Campaign",
-      "Cafe Ritual — Visual Story",
-      "Table Edit — Beverage Campaign",
-      "Signature Pour — Visual Story",
-    ],
   },
 };
 
@@ -42,7 +21,6 @@ const categoryTitle = document.body.dataset.title || "Gallery";
 
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
-const lightboxCaption = document.getElementById("lightboxCaption");
 const closeButton = lightbox.querySelector(".lightbox-close");
 const prevButton = lightbox.querySelector(".lightbox-prev");
 const nextButton = lightbox.querySelector(".lightbox-next");
@@ -115,7 +93,6 @@ function renderCategory(title, folder, files) {
   const entries = validFiles.map((fileName, index) => ({
     src: `${folder}/${encodeURIComponent(fileName)}`,
     alt: `${title} photo ${index + 1}`,
-    caption: formatProjectLabel(fileName, index),
   }));
 
   if (!entries.length) {
@@ -192,7 +169,6 @@ function updateLightbox() {
   if (!current) return;
   lightboxImage.src = current.src;
   lightboxImage.alt = current.alt;
-  lightboxCaption.textContent = current.caption;
 }
 
 function closeLightbox() {
@@ -205,50 +181,6 @@ function closeLightbox() {
 function isImageFile(fileName) {
   const lower = fileName.toLowerCase();
   return IMAGE_EXTENSIONS.some((ext) => lower.endsWith(ext));
-}
-
-function cleanFileName(fileName) {
-  return fileName
-    .replace(/\.[^/.]+$/, "")
-    .replace(/[-_]+/g, " ")
-    .trim();
-}
-
-function formatProjectLabel(fileName, index) {
-  const meta = CATEGORY_META[categoryKey];
-  const cleaned = cleanFileName(fileName);
-
-  if (!meta) {
-    return toTitleCase(cleaned);
-  }
-
-  if (/^(placeholder|img)\s*\d*$/i.test(cleaned)) {
-    return meta.fallbackLabels[index % meta.fallbackLabels.length];
-  }
-
-  if (cleaned.includes("—")) {
-    return cleaned
-      .split("—")
-      .map((part) => toTitleCase(part))
-      .join(" — ");
-  }
-
-  if (cleaned.includes(" - ")) {
-    return cleaned
-      .split(" - ")
-      .map((part) => toTitleCase(part))
-      .join(" — ");
-  }
-
-  return `${toTitleCase(cleaned)} — ${meta.labelSuffix}`;
-}
-
-function toTitleCase(text) {
-  return text
-    .split(/\s+/)
-    .filter(Boolean)
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
 }
 
 async function resolveAutoProductSource() {
