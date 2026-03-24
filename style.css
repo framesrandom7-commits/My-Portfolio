@@ -19,6 +19,10 @@ html {
   scroll-behavior: smooth;
 }
 
+hr {
+  display: none;
+}
+
 body {
   margin: 0;
   font-family: "Manrope", sans-serif;
@@ -121,7 +125,7 @@ main {
   display: grid;
   align-content: start;
   gap: 1.2rem;
-  border-bottom: 1px solid var(--line);
+  border-bottom: none;
   padding-top: clamp(1.6rem, 4vw, 2.8rem);
 }
 
@@ -443,7 +447,7 @@ main {
 
 .gallery-section {
   padding: clamp(2rem, 4vw, 3rem) 0;
-  border-bottom: 1px solid var(--line);
+  border-bottom: none;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
