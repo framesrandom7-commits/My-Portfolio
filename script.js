@@ -2,13 +2,9 @@ const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif", ".s
 const MANIFEST_PATH = "images/manifest.json";
 
 const CATEGORY_ORDER = [
-  { key: "wedding-stories", title: "Wedding Stories", page: "wedding-stories.html" },
-  { key: "events", title: "Events", page: "events.html" },
   { key: "portrait", title: "Portrait", page: "portrait.html" },
   { key: "food", title: "Food", page: "food.html" },
-  { key: "street", title: "Street", page: "street.html" },
   { key: "fashion", title: "Fashion", page: "fashion.html" },
-  { key: "landscape", title: "Landscape", page: "landscape.html" },
   { key: "product", title: "Product", page: "product.html" },
 ];
 
@@ -31,13 +27,9 @@ async function loadManifest() {
     return await response.json();
   } catch {
     return {
-      "wedding-stories": ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
-      events: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
       portrait: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
       food: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
-      street: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
       fashion: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
-      landscape: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
       product: ["placeholder-01.svg", "placeholder-02.svg", "placeholder-03.svg"],
     };
   }
@@ -72,12 +64,6 @@ function renderGenreCards(manifest) {
 }
 
 function resolveCategorySource(manifest, key) {
-  if (key === "wedding-stories") {
-    if (manifest["wedding-stories"]?.length) {
-      return { folder: "wedding-stories", files: manifest["wedding-stories"] };
-    }
-    return { folder: "wedding", files: manifest.wedding || [] };
-  }
   return { folder: key, files: manifest[key] || [] };
 }
 
