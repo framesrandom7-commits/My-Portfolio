@@ -550,6 +550,7 @@ main {
   opacity: 0;
   transition: opacity 0.28s ease;
   pointer-events: none;
+  display: none !important;
 }
 
 .image-card img {
@@ -573,6 +574,13 @@ main {
 
 .image-card:hover .image-wrap::after {
   opacity: 1;
+}
+
+.overlay,
+.image-overlay,
+.caption,
+.portfolio-caption {
+  display: none !important;
 }
 
 .image-card figcaption {
