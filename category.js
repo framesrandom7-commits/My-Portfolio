@@ -152,12 +152,9 @@ function renderCategory(title, folder, files) {
       openLightbox(entries, index);
     });
 
-    const caption = document.createElement("figcaption");
-    caption.textContent = entry.caption;
-
     wrap.append(image);
     button.append(wrap);
-    figure.append(button, caption);
+    figure.append(button);
     genreGallery.append(figure);
   });
 }
