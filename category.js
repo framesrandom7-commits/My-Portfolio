@@ -45,6 +45,9 @@ async function init() {
   lightbox.addEventListener("click", (event) => {
     if (event.target === lightbox) closeLightbox();
   });
+  lightboxImage.addEventListener("click", (event) => {
+    event.stopPropagation();
+  });
 
   document.addEventListener("keydown", (event) => {
     if (!lightbox.classList.contains("open")) return;
