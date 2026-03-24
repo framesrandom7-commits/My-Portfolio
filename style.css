@@ -486,15 +486,16 @@ main {
 }
 
 .gallery-grid {
-  display: grid;
-  gap: clamp(0.9rem, 1.8vw, 1.35rem);
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  column-count: 3;
+  column-gap: 20px;
 }
 
 .image-card {
-  margin: 0;
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 20px;
   border-radius: 18px;
-  overflow: hidden;
+  overflow: visible;
   border: 0;
   background: none !important;
   padding: 0 !important;
@@ -733,6 +734,10 @@ main {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .gallery-grid {
+    column-count: 2;
+  }
+
   .profile-image,
   .hero-portrait {
     width: 260px;
@@ -747,10 +752,6 @@ main {
 
   .hero {
     min-height: 66vh;
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   }
 
   .lightbox {
@@ -779,6 +780,10 @@ main {
 }
 
 @media (max-width: 600px) {
+  .gallery-grid {
+    column-count: 1;
+  }
+
   .profile-image,
   .hero-portrait {
     width: 180px;
