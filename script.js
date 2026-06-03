@@ -3,11 +3,49 @@ const header = document.querySelector(".site-header");
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
 const revealItems = document.querySelectorAll("[data-reveal]");
-const galleryItems = document.querySelectorAll(".gallery-item");
 const lightbox = document.querySelector(".lightbox");
 const lightboxImage = lightbox.querySelector("img");
 const lightboxCaption = lightbox.querySelector("figcaption");
 const reelCards = document.querySelectorAll(".reel-card");
+const galleryContainers = document.querySelectorAll("[data-gallery]");
+const categoryLinks = document.querySelectorAll("[data-category-link]");
+
+const galleryImages = {
+  food: [
+    {
+      src: "images/food/food-01.jpg",
+      title: "Cafe Mood Story",
+      alt: "Premium cafe food photography by Random Frames"
+    },
+    {
+      src: "images/food/food-02.jpg",
+      title: "Tabletop Editorial",
+      alt: "Editorial food photography by Random Frames"
+    },
+    {
+      src: "images/food/food-03.jpg",
+      title: "Food & Beverage Mood",
+      alt: "Food and beverage campaign photography by Random Frames"
+    }
+  ],
+  product: [
+    {
+      src: "images/product/product-01.jpg",
+      title: "Luxury Product Detail",
+      alt: "Luxury product detail photography by Random Frames"
+    },
+    {
+      src: "images/product/product-02.jpg",
+      title: "Product Surface Editorial",
+      alt: "Editorial product photography by Random Frames"
+    },
+    {
+      src: "images/product/product-03.jpg",
+      title: "Brand Campaign Visual",
+      alt: "Commercial brand product photography by Random Frames"
+    }
+  ]
+};
 
 const updateHeader = () => {
   header.classList.toggle("scrolled", window.scrollY > 18);
@@ -48,19 +86,68 @@ revealItems.forEach((item, index) => {
   revealObserver.observe(item);
 });
 
-galleryItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    const image = item.dataset.full;
-    const title = item.dataset.title || item.querySelector("img").alt;
+const createGalleryItem = (image) => {
+  const item = document.createElement("button");
+  item.className = "gallery-item";
+  item.type = "button";
+  item.dataset.full = image.src;
+  item.dataset.title = image.title;
 
-    lightboxImage.src = image;
-    lightboxImage.alt = title;
-    lightboxCaption.textContent = title;
-    lightbox.classList.add("active");
-    lightbox.setAttribute("aria-hidden", "false");
-    body.classList.add("lightbox-open");
+  item.innerHTML = `
+    <img src="${image.src}" alt="${image.alt}" loading="lazy">
+    <span>${image.title}</span>
+  `;
+
+  return item;
+};
+
+galleryContainers.forEach((container) => {
+  const category = container.dataset.gallery;
+  const images = galleryImages[category] || [];
+  const fragment = document.createDocumentFragment();
+
+  images.forEach((image) => {
+    fragment.appendChild(createGalleryItem(image));
   });
+
+  container.appendChild(fragment);
 });
+
+document.addEventListener("click", (event) => {
+  const item = event.target.closest(".gallery-item");
+
+  if (!item) {
+    return;
+  }
+
+  const image = item.dataset.full;
+  const title = item.dataset.title || item.querySelector("img").alt;
+
+  lightboxImage.src = image;
+  lightboxImage.alt = title;
+  lightboxCaption.textContent = title;
+  lightbox.classList.add("active");
+  lightbox.setAttribute("aria-hidden", "false");
+  body.classList.add("lightbox-open");
+});
+
+const updateCategoryNav = () => {
+  const scrollPosition = window.scrollY + 180;
+  let activeCategory = "all";
+
+  document.querySelectorAll("[data-gallery-category]").forEach((section) => {
+    if (section.offsetTop <= scrollPosition) {
+      activeCategory = section.dataset.galleryCategory;
+    }
+  });
+
+  categoryLinks.forEach((link) => {
+    link.classList.toggle("active", link.dataset.categoryLink === activeCategory);
+  });
+};
+
+window.addEventListener("scroll", updateCategoryNav, { passive: true });
+updateCategoryNav();
 
 const closeLightbox = () => {
   lightbox.classList.remove("active");

@@ -15,7 +15,7 @@
 
   <header class="site-header" data-reveal>
     <a class="brand-mark" href="#top" aria-label="Random Frames home">
-      <img src="file:///Users/savansomaiahtp/Downloads/RANDOM%20FRAMES%20LOGO.png" alt="RF Photography logo">
+      <span class="brand-icon" aria-hidden="true">RF</span>
       <span>RANDOM FRAMES</span>
     </a>
     <nav class="desktop-nav" aria-label="Primary navigation">
@@ -33,6 +33,8 @@
 
   <nav class="mobile-menu" aria-label="Mobile navigation">
     <a href="#work">Featured Work</a>
+    <a href="#food-photography">Food Photography</a>
+    <a href="#product-photography">Product Photography</a>
     <a href="#reels">Reel Showcase</a>
     <a href="#experience">Client Experience</a>
     <a href="#contact">Contact</a>
@@ -52,13 +54,13 @@
 
       <div class="hero-media" data-reveal>
         <figure class="hero-frame hero-frame-large">
-          <img src="file:///Users/savansomaiahtp/Downloads/IMG_1700.JPG" alt="Premium cafe and commercial photography by Random Frames">
+          <img src="images/food/food-01.jpg" alt="Premium food and beverage photography by Random Frames">
         </figure>
         <figure class="hero-frame hero-frame-small">
-          <img src="file:///Users/savansomaiahtp/Downloads/WhatsApp%20Image%202026-02-03%20at%2018.26.41.jpeg" alt="Editorial product composition by Random Frames">
+          <img src="images/product/product-01.jpg" alt="Editorial product composition by Random Frames">
         </figure>
-        <div class="hero-stamp" aria-label="RF Photography">
-          <img src="file:///Users/savansomaiahtp/Downloads/RANDOM%20FRAMES%20LOGO.png" alt="">
+        <div class="hero-stamp" aria-label="RF Photography logo">
+          <span>RF</span>
         </div>
       </div>
     </section>
@@ -92,33 +94,31 @@
     <section class="section gallery-section" id="work">
       <div class="section-head" data-reveal>
         <p class="eyebrow">Featured Work</p>
-        <h2>Commercial imagery with presence.</h2>
+        <h2>Commercial imagery arranged by appetite and object desire.</h2>
       </div>
-      <div class="masonry-gallery" aria-label="Featured Random Frames gallery">
-        <button class="gallery-item tall" type="button" data-full="file:///Users/savansomaiahtp/Downloads/IMG_1699.JPG" data-title="Cafe Mood Study">
-          <img src="file:///Users/savansomaiahtp/Downloads/IMG_1699.JPG" alt="Cafe visual story photographed by Random Frames">
-          <span>Cafe Mood Study</span>
-        </button>
-        <button class="gallery-item" type="button" data-full="file:///Users/savansomaiahtp/Downloads/WhatsApp%20Image%202026-02-03%20at%2018.20.49.jpeg" data-title="Product Surface Editorial">
-          <img src="file:///Users/savansomaiahtp/Downloads/WhatsApp%20Image%202026-02-03%20at%2018.20.49.jpeg" alt="Product surface editorial photography">
-          <span>Product Surface Editorial</span>
-        </button>
-        <button class="gallery-item square" type="button" data-full="file:///Users/savansomaiahtp/Downloads/IMG_0155.JPG" data-title="Brand Campaign Visual">
-          <img src="file:///Users/savansomaiahtp/Downloads/IMG_0155.JPG" alt="Brand campaign visual by Random Frames">
-          <span>Brand Campaign Visual</span>
-        </button>
-        <button class="gallery-item wide" type="button" data-full="file:///Users/savansomaiahtp/Downloads/WhatsApp%20Image%202026-02-03%20at%2018.28.30.jpeg" data-title="Food & Beverage Mood">
-          <img src="file:///Users/savansomaiahtp/Downloads/WhatsApp%20Image%202026-02-03%20at%2018.28.30.jpeg" alt="Food and beverage editorial photography">
-          <span>Food & Beverage Mood</span>
-        </button>
-        <button class="gallery-item tall" type="button" data-full="file:///Users/savansomaiahtp/Downloads/WhatsApp%20Image%202026-02-03%20at%2018.26.41.jpeg" data-title="Luxury Product Detail">
-          <img src="file:///Users/savansomaiahtp/Downloads/WhatsApp%20Image%202026-02-03%20at%2018.26.41.jpeg" alt="Luxury product detail photography">
-          <span>Luxury Product Detail</span>
-        </button>
-        <button class="gallery-item" type="button" data-full="file:///Users/savansomaiahtp/Downloads/IMG_1700.JPG" data-title="Commercial Ambience">
-          <img src="file:///Users/savansomaiahtp/Downloads/IMG_1700.JPG" alt="Commercial ambience photography by Random Frames">
-          <span>Commercial Ambience</span>
-        </button>
+
+      <nav class="category-nav" aria-label="Gallery categories" data-reveal>
+        <a href="#work" data-category-link="all">All Work</a>
+        <a href="#food-photography" data-category-link="food">Food Photography</a>
+        <a href="#product-photography" data-category-link="product">Product Photography</a>
+      </nav>
+
+      <div class="gallery-category" id="food-photography" data-gallery-category="food">
+        <div class="gallery-category-head" data-reveal>
+          <span>01</span>
+          <h3>Food Photography</h3>
+          <p>Atmospheric food and beverage frames built for menus, cafe campaigns, launches, and social appetite.</p>
+        </div>
+        <div class="masonry-gallery" data-gallery="food" aria-label="Food Photography gallery"></div>
+      </div>
+
+      <div class="gallery-category" id="product-photography" data-gallery-category="product">
+        <div class="gallery-category-head" data-reveal>
+          <span>02</span>
+          <h3>Product Photography</h3>
+          <p>Editorial product images with clean composition, premium surface language, and brand-ready polish.</p>
+        </div>
+        <div class="masonry-gallery" data-gallery="product" aria-label="Product Photography gallery"></div>
       </div>
     </section>
 
@@ -129,7 +129,7 @@
       </div>
       <div class="reel-grid">
         <article class="reel-card" data-reveal>
-          <video src="file:///Users/savansomaiahtp/IMG_1357.MP4" muted loop playsinline preload="metadata"></video>
+          <video src="videos/reel-01.mp4" muted loop playsinline preload="metadata"></video>
           <button class="sound-toggle" type="button" aria-label="Unmute reel">Sound</button>
           <div class="reel-label">
             <span>Cafe Reel</span>
@@ -137,7 +137,7 @@
           </div>
         </article>
         <article class="reel-card" data-reveal>
-          <video src="file:///Users/savansomaiahtp/IMG_1358.MP4" muted loop playsinline preload="metadata"></video>
+          <video src="videos/reel-02.mp4" muted loop playsinline preload="metadata"></video>
           <button class="sound-toggle" type="button" aria-label="Unmute reel">Sound</button>
           <div class="reel-label">
             <span>Food Motion</span>
@@ -145,7 +145,7 @@
           </div>
         </article>
         <article class="reel-card" data-reveal>
-          <video src="file:///Users/savansomaiahtp/IMG_1359.MP4" muted loop playsinline preload="metadata"></video>
+          <video src="videos/reel-03.mp4" muted loop playsinline preload="metadata"></video>
           <button class="sound-toggle" type="button" aria-label="Unmute reel">Sound</button>
           <div class="reel-label">
             <span>Commercial</span>
