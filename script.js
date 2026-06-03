@@ -3,52 +3,13 @@ const header = document.querySelector(".site-header");
 const menuToggle = document.querySelector(".menu-toggle");
 const mobileMenu = document.querySelector(".mobile-menu");
 const revealItems = document.querySelectorAll("[data-reveal]");
+const galleryItems = document.querySelectorAll(".gallery-item");
 const lightbox = document.querySelector(".lightbox");
 const lightboxImage = lightbox.querySelector("img");
-const lightboxCaption = lightbox.querySelector("figcaption");
-const reelCards = document.querySelectorAll(".reel-card");
-const galleryContainers = document.querySelectorAll("[data-gallery]");
-const categoryLinks = document.querySelectorAll("[data-category-link]");
-
-const galleryImages = {
-  food: [
-    {
-      src: "images/food/food-01.jpg",
-      title: "Cafe Mood Story",
-      alt: "Premium cafe food photography by Random Frames"
-    },
-    {
-      src: "images/food/food-02.jpg",
-      title: "Tabletop Editorial",
-      alt: "Editorial food photography by Random Frames"
-    },
-    {
-      src: "images/food/food-03.jpg",
-      title: "Food & Beverage Mood",
-      alt: "Food and beverage campaign photography by Random Frames"
-    }
-  ],
-  product: [
-    {
-      src: "images/product/product-01.jpg",
-      title: "Luxury Product Detail",
-      alt: "Luxury product detail photography by Random Frames"
-    },
-    {
-      src: "images/product/product-02.jpg",
-      title: "Product Surface Editorial",
-      alt: "Editorial product photography by Random Frames"
-    },
-    {
-      src: "images/product/product-03.jpg",
-      title: "Brand Campaign Visual",
-      alt: "Commercial brand product photography by Random Frames"
-    }
-  ]
-};
+const filmItems = document.querySelectorAll(".film-item");
 
 const updateHeader = () => {
-  header.classList.toggle("scrolled", window.scrollY > 18);
+  header.classList.toggle("scrolled", window.scrollY > 12);
 };
 
 window.addEventListener("scroll", updateHeader, { passive: true });
@@ -76,78 +37,25 @@ const revealObserver = new IntersectionObserver(
     });
   },
   {
-    threshold: 0.18,
-    rootMargin: "0px 0px -70px 0px"
+    threshold: 0.14,
+    rootMargin: "0px 0px -42px 0px"
   }
 );
 
 revealItems.forEach((item, index) => {
-  item.style.transitionDelay = `${Math.min(index * 42, 260)}ms`;
+  item.style.transitionDelay = `${Math.min(index * 24, 120)}ms`;
   revealObserver.observe(item);
 });
 
-const createGalleryItem = (image) => {
-  const item = document.createElement("button");
-  item.className = "gallery-item";
-  item.type = "button";
-  item.dataset.full = image.src;
-  item.dataset.title = image.title;
-
-  item.innerHTML = `
-    <img src="${image.src}" alt="${image.alt}" loading="lazy">
-    <span>${image.title}</span>
-  `;
-
-  return item;
-};
-
-galleryContainers.forEach((container) => {
-  const category = container.dataset.gallery;
-  const images = galleryImages[category] || [];
-  const fragment = document.createDocumentFragment();
-
-  images.forEach((image) => {
-    fragment.appendChild(createGalleryItem(image));
+galleryItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    lightboxImage.src = item.dataset.full;
+    lightboxImage.alt = "";
+    lightbox.classList.add("active");
+    lightbox.setAttribute("aria-hidden", "false");
+    body.classList.add("lightbox-open");
   });
-
-  container.appendChild(fragment);
 });
-
-document.addEventListener("click", (event) => {
-  const item = event.target.closest(".gallery-item");
-
-  if (!item) {
-    return;
-  }
-
-  const image = item.dataset.full;
-  const title = item.dataset.title || item.querySelector("img").alt;
-
-  lightboxImage.src = image;
-  lightboxImage.alt = title;
-  lightboxCaption.textContent = title;
-  lightbox.classList.add("active");
-  lightbox.setAttribute("aria-hidden", "false");
-  body.classList.add("lightbox-open");
-});
-
-const updateCategoryNav = () => {
-  const scrollPosition = window.scrollY + 180;
-  let activeCategory = "all";
-
-  document.querySelectorAll("[data-gallery-category]").forEach((section) => {
-    if (section.offsetTop <= scrollPosition) {
-      activeCategory = section.dataset.galleryCategory;
-    }
-  });
-
-  categoryLinks.forEach((link) => {
-    link.classList.toggle("active", link.dataset.categoryLink === activeCategory);
-  });
-};
-
-window.addEventListener("scroll", updateCategoryNav, { passive: true });
-updateCategoryNav();
 
 const closeLightbox = () => {
   lightbox.classList.remove("active");
@@ -156,9 +64,8 @@ const closeLightbox = () => {
   window.setTimeout(() => {
     if (!lightbox.classList.contains("active")) {
       lightboxImage.src = "";
-      lightboxCaption.textContent = "";
     }
-  }, 280);
+  }, 240);
 };
 
 lightbox.addEventListener("click", (event) => {
@@ -178,46 +85,26 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-reelCards.forEach((card) => {
-  const video = card.querySelector("video");
-  const soundToggle = card.querySelector(".sound-toggle");
+filmItems.forEach((item) => {
+  const video = item.querySelector("video");
+  const soundToggle = item.querySelector(".sound-toggle");
+  const fullscreenToggle = item.querySelector(".fullscreen-toggle");
 
-  const playVideo = () => {
-    video.play().catch(() => {});
-  };
+  video.play().catch(() => {});
 
-  const pauseVideo = () => {
-    video.pause();
-    video.currentTime = 0;
-  };
-
-  card.addEventListener("mouseenter", playVideo);
-  card.addEventListener("mouseleave", pauseVideo);
-  card.addEventListener("focusin", playVideo);
-  card.addEventListener("focusout", pauseVideo);
-
-  const mobileObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (window.matchMedia("(hover: none)").matches) {
-          if (entry.isIntersecting) {
-            playVideo();
-          } else {
-            video.pause();
-          }
-        }
-      });
-    },
-    { threshold: 0.55 }
-  );
-
-  mobileObserver.observe(card);
-
-  soundToggle.addEventListener("click", (event) => {
-    event.stopPropagation();
+  soundToggle.addEventListener("click", () => {
     video.muted = !video.muted;
     soundToggle.textContent = video.muted ? "Sound" : "Mute";
-    soundToggle.setAttribute("aria-label", video.muted ? "Unmute reel" : "Mute reel");
-    playVideo();
+    soundToggle.setAttribute("aria-label", video.muted ? "Unmute film" : "Mute film");
+    video.play().catch(() => {});
+  });
+
+  fullscreenToggle.addEventListener("click", () => {
+    if (video.requestFullscreen) {
+      video.requestFullscreen();
+    } else if (video.webkitEnterFullscreen) {
+      video.webkitEnterFullscreen();
+    }
+    video.play().catch(() => {});
   });
 });
