@@ -6,14 +6,11 @@ const revealItems = document.querySelectorAll("[data-reveal]");
 const galleryItems = document.querySelectorAll(".gallery-item");
 const lightbox = document.querySelector(".lightbox");
 const lightboxImage = lightbox.querySelector("img");
-const filmItems = document.querySelectorAll(".film-item");
+const reelCards = document.querySelectorAll(".reel-card");
 
-const updateHeader = () => {
-  header.classList.toggle("scrolled", window.scrollY > 12);
-};
-
-window.addEventListener("scroll", updateHeader, { passive: true });
-updateHeader();
+window.addEventListener("scroll", () => {
+  header.classList.toggle("is-scrolled", window.scrollY > 10);
+}, { passive: true });
 
 menuToggle.addEventListener("click", () => {
   const isOpen = body.classList.toggle("menu-open");
@@ -27,23 +24,17 @@ mobileMenu.querySelectorAll("a").forEach((link) => {
   });
 });
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  {
-    threshold: 0.14,
-    rootMargin: "0px 0px -42px 0px"
-  }
-);
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: "0px 0px -36px 0px" });
 
 revealItems.forEach((item, index) => {
-  item.style.transitionDelay = `${Math.min(index * 24, 120)}ms`;
+  item.style.transitionDelay = `${Math.min(index * 20, 100)}ms`;
   revealObserver.observe(item);
 });
 
@@ -65,7 +56,7 @@ const closeLightbox = () => {
     if (!lightbox.classList.contains("active")) {
       lightboxImage.src = "";
     }
-  }, 240);
+  }, 200);
 };
 
 lightbox.addEventListener("click", (event) => {
@@ -78,24 +69,25 @@ window.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     body.classList.remove("menu-open");
     menuToggle.setAttribute("aria-expanded", "false");
-
-    if (lightbox.classList.contains("active")) {
-      closeLightbox();
-    }
+    if (lightbox.classList.contains("active")) closeLightbox();
   }
 });
 
-filmItems.forEach((item) => {
-  const video = item.querySelector("video");
-  const soundToggle = item.querySelector(".sound-toggle");
-  const fullscreenToggle = item.querySelector(".fullscreen-toggle");
+reelCards.forEach((card) => {
+  const video = card.querySelector("video");
+  const soundToggle = card.querySelector(".sound-toggle");
+  const fullscreenToggle = card.querySelector(".fullscreen-toggle");
 
-  video.play().catch(() => {});
+  card.addEventListener("mouseenter", () => video.play().catch(() => {}));
+  card.addEventListener("mouseleave", () => {
+    video.pause();
+    video.currentTime = 0;
+  });
 
   soundToggle.addEventListener("click", () => {
     video.muted = !video.muted;
     soundToggle.textContent = video.muted ? "Sound" : "Mute";
-    soundToggle.setAttribute("aria-label", video.muted ? "Unmute film" : "Mute film");
+    soundToggle.setAttribute("aria-label", video.muted ? "Unmute reel" : "Mute reel");
     video.play().catch(() => {});
   });
 
