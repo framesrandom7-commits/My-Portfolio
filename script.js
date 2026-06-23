@@ -5,7 +5,10 @@ const revealItems = document.querySelectorAll("[data-reveal]");
 const galleryItems = document.querySelectorAll(".gallery-item");
 const lightbox = document.querySelector(".lightbox");
 const lightboxImage = lightbox.querySelector("img");
-const videoCards = document.querySelectorAll(".reel-card, .film-card");
+const videoCards = document.querySelectorAll(".reel-card");
+const enquiryForm = document.querySelector(".enquiry-form");
+const formFrame = document.querySelector(".form-frame");
+const formSuccess = document.querySelector(".form-success");
 
 if (menuToggle) {
   menuToggle.addEventListener("click", () => {
@@ -86,19 +89,15 @@ videoCards.forEach((card) => {
 
   if (!video) return;
 
-  card.addEventListener("mouseenter", () => {
-    pauseOtherVideos(video);
-    video.play().catch(() => {});
-  });
+  video.muted = true;
+  video.play().catch(() => {});
 
-  card.addEventListener("mouseleave", () => {
-    video.pause();
-    video.currentTime = 0;
+  card.addEventListener("mouseenter", () => {
+    video.play().catch(() => {});
   });
 
   card.addEventListener("click", (event) => {
     if (event.target.closest("button")) return;
-    pauseOtherVideos(video);
     if (video.paused) {
       video.play().catch(() => {});
     } else {
@@ -127,3 +126,19 @@ videoCards.forEach((card) => {
     });
   }
 });
+
+let formSubmitted = false;
+
+if (enquiryForm && formFrame && formSuccess) {
+  enquiryForm.addEventListener("submit", () => {
+    formSubmitted = true;
+    formSuccess.classList.remove("is-visible");
+  });
+
+  formFrame.addEventListener("load", () => {
+    if (!formSubmitted) return;
+    formSuccess.classList.add("is-visible");
+    enquiryForm.reset();
+    formSubmitted = false;
+  });
+}
