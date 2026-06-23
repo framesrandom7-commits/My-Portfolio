@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Random Frames | Commercial & Brand Photographer</title>
-  <meta name="description" content="Random Frames is the portfolio of Savan Somaiah T P, a commercial and brand photographer for product, food, hospitality, nightlife and brand storytelling.">
+  <title>Random Frames | Video-First Creative Studio</title>
+  <meta name="description" content="Random Frames creates complete visual content through brand films, reels and photography for hospitality, real estate and events.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -12,148 +12,130 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="brand-mark" href="#top" aria-label="Random Frames home">
-      <img src="images/logo.svg" alt="RF Photography logo">
+    <a class="brand-mark" href="#home" aria-label="Random Frames home">
+      <img src="images/logo.svg" alt="RF logo">
       <span>RANDOM FRAMES</span>
     </a>
-
     <nav class="desktop-nav" aria-label="Primary navigation">
-      <a href="#product">Product</a>
-      <a href="#food">Food</a>
-      <a href="#films">Films</a>
+      <a href="#home">Home</a>
+      <a href="#hospitality">Café & Hospitality</a>
+      <a href="#real-estate">Real Estate</a>
+      <a href="#events">Events</a>
       <a href="#about">About</a>
-      <a href="#work-with-me">Work With Me</a>
+      <a href="#contact">Contact</a>
     </nav>
-
-    <a class="nav-cta" href="https://www.instagram.com/random.frames.7" target="_blank" rel="noreferrer">Instagram</a>
-
-    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-    </button>
+    <a class="nav-cta" href="#contact">Book Project</a>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
   </header>
 
   <nav class="mobile-menu" aria-label="Mobile navigation">
-    <a href="#product">Product</a>
-    <a href="#food">Food</a>
-    <a href="#films">Films</a>
+    <a href="#home">Home</a>
+    <a href="#hospitality">Café & Hospitality</a>
+    <a href="#real-estate">Real Estate</a>
+    <a href="#events">Events</a>
     <a href="#about">About</a>
-    <a href="#work-with-me">Work With Me</a>
+    <a href="#contact">Contact</a>
   </nav>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-copy" data-reveal>
-        <p class="eyebrow">Commercial & Brand Photographer</p>
-        <h1>Luxury imagery for products, food, hospitality and nightlife.</h1>
-        <p class="hero-text">Random Frames creates clean, premium visuals and compact brand films for modern businesses that need commercial content with atmosphere.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#product">View Portfolio</a>
-          <a class="button ghost" href="#work-with-me">Book a Shoot</a>
+  <main id="home">
+    <section class="hero-showreel">
+      <div class="showreel-wrap" data-reveal>
+        <video class="master-showreel" src="videos/showreel.mp4" autoplay muted loop playsinline preload="metadata"></video>
+        <div class="showreel-panel">
+          <p class="eyebrow">Visual Content Studio</p>
+          <h1>Cinematic Content for<br>Hospitality,<br>Real Estate<br>& Events</h1>
+          <p>Brand Films, Reels and Photography crafted to help businesses stand out.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#industries">View Work</a>
+            <a class="button ghost" href="#contact">Book Project</a>
+          </div>
         </div>
       </div>
-
-      <div class="hero-media" data-reveal>
-        <img class="hero-main" src="images/product/product-1.jpg" alt="" fetchpriority="high">
-        <img class="hero-secondary" src="images/food/food-4.webp" alt="" loading="lazy">
-      </div>
     </section>
 
-    <section class="portfolio-section" id="product">
+    <section class="industries" id="industries">
       <div class="section-title" data-reveal>
-        <p class="eyebrow">01 Product</p>
-        <h2>Product Photography</h2>
+        <p class="eyebrow">Industries</p>
+        <h2>We create complete visual content — films, reels and photography.</h2>
       </div>
-      <div class="gallery-grid" aria-label="Product photography gallery">
-        <button class="gallery-item" type="button" data-full="images/product/product-1.jpg"><img src="images/product/product-1.jpg" alt="" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-full="images/product/product-2.jpg"><img src="images/product/product-2.jpg" alt="" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-full="images/product/product-3.jpg"><img src="images/product/product-3.jpg" alt="" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-full="images/product/product-4.jpg"><img src="images/product/product-4.jpg" alt="" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-full="images/product/product-5.jpg"><img src="images/product/product-5.jpg" alt="" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-full="images/product/product-6.jpg"><img src="images/product/product-6.jpg" alt="" loading="lazy"></button>
+      <div class="industry-grid">
+        <a class="industry-card" href="#hospitality" data-reveal><img src="images/hospitality/hospitality-1.webp" alt="" loading="lazy"><div><span>01</span><h3>Café & Hospitality</h3><p>Films, reels and photography for guest-ready brands.</p></div></a>
+        <a class="industry-card" href="#real-estate" data-reveal><img src="images/real-estate/real-estate-1.jpg" alt="" loading="lazy"><div><span>02</span><h3>Real Estate</h3><p>Cinematic property content for listings and launches.</p></div></a>
+        <a class="industry-card" href="#events" data-reveal><img src="images/events/events-1.webp" alt="" loading="lazy"><div><span>03</span><h3>Events</h3><p>Fast, polished coverage for experiences with reach.</p></div></a>
       </div>
     </section>
 
-    <section class="portfolio-section" id="food">
-      <div class="section-title" data-reveal>
-        <p class="eyebrow">02 Food</p>
-        <h2>Food & Beverage</h2>
-      </div>
-      <div class="gallery-grid" aria-label="Food and beverage photography gallery">
-        <button class="gallery-item" type="button" data-full="images/food/food-1.webp"><img src="images/food/food-1.webp" alt="" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-full="images/food/food-2.webp"><img src="images/food/food-2.webp" alt="" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-full="images/food/food-3.webp"><img src="images/food/food-3.webp" alt="" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-full="images/food/food-4.webp"><img src="images/food/food-4.webp" alt="" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-full="images/food/food-5.webp"><img src="images/food/food-5.webp" alt="" loading="lazy"></button>
-        <button class="gallery-item" type="button" data-full="images/food/food-6.webp"><img src="images/food/food-6.webp" alt="" loading="lazy"></button>
-      </div>
+    <section class="industry-section" id="hospitality">
+      <div class="industry-head" data-reveal><p class="eyebrow">Café & Hospitality</p><h2>Films, reels and photos for cafés, restaurants and stays.</h2></div>
+      <div class="content-block"><h3>Photography Gallery</h3><div class="image-grid">
+        <button class="gallery-item" type="button" data-full="images/hospitality/hospitality-1.webp"><img src="images/hospitality/hospitality-1.webp" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/hospitality/hospitality-2.webp"><img src="images/hospitality/hospitality-2.webp" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/hospitality/hospitality-3.webp"><img src="images/hospitality/hospitality-3.webp" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/hospitality/hospitality-4.webp"><img src="images/hospitality/hospitality-4.webp" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/hospitality/hospitality-5.webp"><img src="images/hospitality/hospitality-5.webp" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/hospitality/hospitality-6.webp"><img src="images/hospitality/hospitality-6.webp" alt="" loading="lazy"></button>
+      </div></div>
+      <div class="content-block"><h3>Reels</h3><div class="reel-grid">
+        <article class="reel-card"><video src="videos/hospitality/reel-1.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+        <article class="reel-card"><video src="videos/hospitality/reel-2.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+        <article class="reel-card"><video src="videos/hospitality/reel-3.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+        <article class="reel-card"><video src="videos/hospitality/reel-4.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+      </div></div>
+      <div class="content-block"><h3>Brand Film</h3><div class="film-grid single">
+        <article class="film-card"><video src="videos/hospitality/brand-film-1.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+      </div></div>
     </section>
 
-    <section class="portfolio-section films" id="films">
-      <div class="section-title" data-reveal>
-        <p class="eyebrow">03 Films</p>
-        <h2>Brand Films</h2>
-      </div>
-      <div class="reel-grid" aria-label="Brand film reels">
-        <article class="reel-card" data-reveal>
-          <video src="videos/reel-1.mp4" muted loop playsinline preload="metadata"></video>
-          <div class="reel-controls">
-            <button class="sound-toggle" type="button" aria-label="Unmute reel">Sound</button>
-            <button class="fullscreen-toggle" type="button" aria-label="Open reel fullscreen">Full</button>
-          </div>
-        </article>
-        <article class="reel-card" data-reveal>
-          <video src="videos/reel-2.mp4" muted loop playsinline preload="metadata"></video>
-          <div class="reel-controls">
-            <button class="sound-toggle" type="button" aria-label="Unmute reel">Sound</button>
-            <button class="fullscreen-toggle" type="button" aria-label="Open reel fullscreen">Full</button>
-          </div>
-        </article>
-        <article class="reel-card" data-reveal>
-          <video src="videos/reel-3.mp4" muted loop playsinline preload="metadata"></video>
-          <div class="reel-controls">
-            <button class="sound-toggle" type="button" aria-label="Unmute reel">Sound</button>
-            <button class="fullscreen-toggle" type="button" aria-label="Open reel fullscreen">Full</button>
-          </div>
-        </article>
-        <article class="reel-card" data-reveal>
-          <video src="videos/reel-4.mp4" muted loop playsinline preload="metadata"></video>
-          <div class="reel-controls">
-            <button class="sound-toggle" type="button" aria-label="Unmute reel">Sound</button>
-            <button class="fullscreen-toggle" type="button" aria-label="Open reel fullscreen">Full</button>
-          </div>
-        </article>
-      </div>
+    <section class="industry-section" id="real-estate">
+      <div class="industry-head" data-reveal><p class="eyebrow">Real Estate</p><h2>Property content built for spaces, listings and launches.</h2></div>
+      <div class="content-block"><h3>Photography Gallery</h3><div class="image-grid">
+        <button class="gallery-item" type="button" data-full="images/real-estate/real-estate-1.jpg"><img src="images/real-estate/real-estate-1.jpg" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/real-estate/real-estate-2.jpg"><img src="images/real-estate/real-estate-2.jpg" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/real-estate/real-estate-3.jpg"><img src="images/real-estate/real-estate-3.jpg" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/real-estate/real-estate-4.jpg"><img src="images/real-estate/real-estate-4.jpg" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/real-estate/real-estate-5.jpg"><img src="images/real-estate/real-estate-5.jpg" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/real-estate/real-estate-6.jpg"><img src="images/real-estate/real-estate-6.jpg" alt="" loading="lazy"></button>
+      </div></div>
+      <div class="content-block"><h3>Property Reels</h3><div class="reel-grid compact">
+        <article class="reel-card"><video src="videos/real-estate/reel-1.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+        <article class="reel-card"><video src="videos/real-estate/reel-2.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+        <article class="reel-card"><video src="videos/reel-3.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+        <article class="reel-card"><video src="videos/reel-4.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+      </div></div>
+      <div class="content-block"><h3>Walkthrough Film</h3><div class="film-grid single">
+        <article class="film-card"><video src="videos/real-estate/walkthrough-1.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+      </div></div>
     </section>
 
-    <section class="about-section" id="about" data-reveal>
-      <p class="eyebrow">04 About</p>
-      <p>I’m Savan Somaiah T P, a Commercial & Brand Photographer creating refined imagery for product, food, hospitality, nightlife and brand storytelling.</p>
+    <section class="industry-section" id="events">
+      <div class="industry-head" data-reveal><p class="eyebrow">Events</p><h2>Highlight films, reels and photos for memorable events.</h2></div>
+      <div class="content-block"><h3>Photography Gallery</h3><div class="image-grid">
+        <button class="gallery-item" type="button" data-full="images/events/events-1.webp"><img src="images/events/events-1.webp" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/events/events-2.webp"><img src="images/events/events-2.webp" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/events/events-3.webp"><img src="images/events/events-3.webp" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/events/events-4.jpg"><img src="images/events/events-4.jpg" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/events/events-5.jpg"><img src="images/events/events-5.jpg" alt="" loading="lazy"></button>
+        <button class="gallery-item" type="button" data-full="images/events/events-6.jpg"><img src="images/events/events-6.jpg" alt="" loading="lazy"></button>
+      </div></div>
+      <div class="content-block"><h3>Event Reels</h3><div class="reel-grid compact">
+        <article class="reel-card"><video src="videos/events/reel-1.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+        <article class="reel-card"><video src="videos/events/reel-2.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+        <article class="reel-card"><video src="videos/reel-1.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+        <article class="reel-card"><video src="videos/reel-2.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+      </div></div>
+      <div class="content-block"><h3>Highlight Film</h3><div class="film-grid single">
+        <article class="film-card"><video src="videos/events/highlight-1.mp4" muted loop playsinline controls preload="metadata"></video><div class="video-controls"><button class="sound-toggle" type="button">Sound</button><button class="fullscreen-toggle" type="button">Full</button></div></article>
+      </div></div>
     </section>
 
-    <section class="work-section" id="work-with-me" data-reveal>
-      <div>
-        <p class="eyebrow">05 Work With Me</p>
-        <h2>Premium visuals for your next launch, menu, campaign or social story.</h2>
-      </div>
-      <div class="contact-block">
-        <a href="mailto:random.frames.7@gmail.com">random.frames.7@gmail.com</a>
-        <a href="https://www.instagram.com/random.frames.7" target="_blank" rel="noreferrer">@random.frames.7</a>
-        <a class="button primary" href="https://wa.me/919886688047" target="_blank" rel="noreferrer">WhatsApp</a>
-      </div>
+    <section class="about-contact" id="about">
+      <div class="about-block" data-reveal><p class="eyebrow">About</p><h2>Random Frames is a video-first creative studio creating films, reels and photography for hospitality brands, real estate properties and events.</h2><p class="founder">Founder: Savan Somaiah T P</p><div class="focus-list"><span>Hospitality</span><span>Real Estate</span><span>Events</span><span>Films</span><span>Reels</span><span>Photography</span></div></div>
+      <div class="contact-block" id="contact" data-reveal><p class="eyebrow">Contact</p><h2>Book a visual content project.</h2><div class="contact-actions"><a class="button primary" href="https://wa.me/919886688047" target="_blank" rel="noreferrer">WhatsApp</a><a class="button ghost" href="https://www.instagram.com/random.frames.7" target="_blank" rel="noreferrer">Instagram</a><a class="button ghost" href="mailto:random.frames.7@gmail.com">Email</a><a class="button red" href="https://wa.me/919886688047" target="_blank" rel="noreferrer">Book Project</a></div></div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <span>RF Photography</span>
-    <span>9886688047</span>
-  </footer>
-
-  <div class="lightbox" aria-hidden="true">
-    <button class="lightbox-close" type="button" aria-label="Close image"></button>
-    <img src="" alt="">
-  </div>
-
+  <footer class="site-footer"><span>Random Frames</span><span>Video-First Creative Studio</span><span>@random.frames.7</span></footer>
+  <div class="lightbox" aria-hidden="true"><button class="lightbox-close" type="button" aria-label="Close image"></button><img src="" alt=""></div>
   <script src="script.js"></script>
 </body>
 </html>
